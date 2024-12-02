@@ -6,4 +6,5 @@ for i in $(seq $(wc -l part1 | cut -f 1 -d ' '))
 	do
 		sum=$(( $sum + $(./nominal.sh $(sed -n "$i"'{p;q}' part1)) ))
 	done
+rm -f part1
 echo $sum
