@@ -1,12 +1,6 @@
 #!/bin/sh
 
 INPUT=$(cat input)
-
-awk -f crack.awk input >lol
-WIDTH=$(tail -n 1 lol | tr -d '\n' | wc -c)
-for i in $(seq $(wc -l lol | cut -f 1 -d ' '))
-	do
-		LINE=$(sed -n ${i}p lol)
-		CUR=$(echo $LINE | tr -d '\n'| wc -c)
-		printf "%s%$((140-$CUR))s" "$LINE" " " | head -c 140 | sed 's/$/\n/'
-	done >lmao
+SUM=0
+SUM=$(cat input | tr -d '\n' | grep -oEe 'M.S.{7}.A..{7}M.S' -e 'M.M.{7}.A..{7}S.S' -e 'S.S.{7}.A..{7}M.M' -e 'S.M.{7}.A..{7}S.M' | wc -l)
+echo $SUM
